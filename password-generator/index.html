@@ -1,53 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Generator • Dhruv Upadhyay</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Dhruv Upadhyay Tools</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href=".com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/du-logo.png">
+    <meta name="description" content="Generate secure, random passwords with customizable options. Premium developer tool by Dhruv Upadhyay.">
 </head>
 <body>
-  <main>
-    <h1>Strong Password Generator</h1>
-    <small>Create highly secure, random passwords in one click</small>
+    <header class="header">
+        <div class="header-content">
+            <a href="../" class="brand-link">
+                <img src="../assets/du-logo.png" alt="DU logo" class="h-10" style="width: auto;">
+                <span class="brand-text">Dev Tools</span>
+            </a>
+            <nav class="nav">
+                <a href="https://dhruvupadhyay.com" class="nav-link">Portfolio</a>
+                <a href="https://github.com/dhruvdevx/dev-tools" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="output-wrap">
-      <input type="text" id="password" placeholder="Click Generate" readonly>
-      <button class="btn-copy" id="copy" aria-label="Copy to clipboard">📋</button>
-    </div>
+    <main class="main">
+        <div class="container">
+            <div class="tool-header">
+                <h1 class="tool-title">🔐 Password Generator</h1>
+                <p class="tool-description">Generate secure, random passwords with customizable options and cryptographic strength.</p>
+            </div>
 
-    <div class="controls">
-      <div class="range-group">
-        <label for="length">Length: <span id="lengthValue">16</span></label>
-        <input type="range" id="length" min="6" max="40" value="16">
-      </div>
+            <div class="password-card">
+                <div class="password-section">
+                    <label for="password" class="password-label">Generated Password</label>
+                    <div class="password-output">
+                        <input type="text" id="password" class="password-input" readonly placeholder="Click generate to create password">
+                        <button id="copyBtn" class="copy-btn" title="Copy to clipboard">
+                            <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
 
-      <div class="check-group">
-        <input type="checkbox" id="lowercase" checked>
-        <label for="lowercase">a-z</label>
-      </div>
-      <div class="check-group">
-        <input type="checkbox" id="uppercase" checked>
-        <label for="uppercase">A-Z</label>
-      </div>
-      <div class="check-group">
-        <input type="checkbox" id="numbers" checked>
-        <label for="numbers">0-9</label>
-      </div>
-      <div class="check-group">
-        <input type="checkbox" id="symbols" checked>
-        <label for="symbols">!@#%</label>
-      </div>
-    </div>
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label for="length" class="control-label">Password Length</label>
+                        <div class="slider-container">
+                            <input type="range" id="length" min="4" max="128" value="16" class="slider">
+                            <span id="lengthValue" class="slider-value">16</span>
+                        </div>
+                    </div>
 
-    <button class="btn-generate" id="generate">Generate Password</button>
-  </main>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="uppercase" checked>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Uppercase Letters (A-Z)</span>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="lowercase" checked>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Lowercase Letters (a-z)</span>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="numbers" checked>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Numbers (0-9)</span>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="symbols" checked>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Symbols (!@#$%^&*)</span>
+                        </label>
+                    </div>
 
-  <div class="toast" id="toast" role="status"></div>
+                    <button id="generateBtn" class="generate-btn">
+                        <svg class="generate-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                        </svg>
+                        Generate Strong Password
+                    </button>
+                </div>
+            </div>
 
-  <script src="script.js"></script>
+            <div class="security-info">
+                <h3 class="info-title">🛡️ Security Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Client-Side Generation:</strong> Passwords are generated entirely in your browser for maximum security.
+                    </div>
+                    <div class="info-item">
+                        <strong>Cryptographically Secure:</strong> Uses Web Crypto API for true randomness.
+                    </div>
+                    <div class="info-item">
+                        <strong>No Storage:</strong> Generated passwords are never stored or transmitted.
+                    </div>
+                    <div class="info-item">
+                        <strong>Character Variety:</strong> Ensures at least one character from each selected type.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Dhruv Upadhyay — Premium developer tools, open source</p>
+        </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">Password copied to clipboard!</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
