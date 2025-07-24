@@ -28,7 +28,10 @@ class SecurePasswordGenerator {
         this.toast = document.getElementById('toast');
 
         // Checkboxes
-        this.uppercaseCheck = document.getElementById('uppercase');this.numbersCheck = document.getElementById('numbers');
+        this.uppercaseCheck = document.getElementById('uppercase');
+        this.lowercaseCheck = document.getElementById('lowercase');
+        this.numbersCheck = document.getElementById('numbers');
+
         this.symbolsCheck = document.getElementById('symbols');
     }
 
