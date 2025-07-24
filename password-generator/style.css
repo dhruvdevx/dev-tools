@@ -1,207 +1,115 @@
-/* ──────────────────────────────────────────────
-   Global tokens (light mode defaults)
+/* ──────────────────────────────────────────
+   Password Generator – Brand-Matched Styles
    ────────────────────────────────────────────── */
-:root{
-  /* brand & neutrals */
-  --clr-primary:       #2190b0;      /* teal 600 */
-  --clr-primary-hover: #1a8bcd;      /* teal 700 */
-  --clr-bg:            #fffdf6;      /* warm cream */
-  --clr-surface:       #ffffff;      /* card surface */
-  --clr-text:          #182628;      /* dark slate */
-  --clr-text-muted:    #4f6b77;      /* mid slate */
-  --radius-lg:         1rem;
-  --shadow-lg:         0 8px 24px -4px rgb(0 0 0 /.12);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI",
-               Roboto, "Helvetica Neue", Arial, sans-serif;
+:root {
+  /* Brand colours */
+  --primary: #2190b0;
+  --primary-hover: #1a8bcd;
+  --primary-active: #13759c;
+
+  /* Light theme */
+  --bg: #fffdf6;
+  --surface: #ffffff;
+  --surface-2: #f5f6f4;
+  --text: #182628;
+  --text-muted: #4f6b77;
+  --border: #e0e2e2;
+
+  /* Radius & shadows */
+  --r-sm: .5rem;
+  --r-md: .75rem;
+  --r-lg: 1rem;
+  --sh-sm: 0 1px 2px rgba(0,0,0,.05);
+  --sh-lg: 0 10px 15px -3px rgba(0,0,0,.12);
+  font-family: "Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
 }
 
-/* Dark-mode overrides */
+/* Dark mode overrides */
 @media (prefers-color-scheme: dark){
   :root{
-    --clr-bg:          #0f172a;      /* slate 900 */
-    --clr-surface:     #1e293b;      /* slate 800 */
-    --clr-text:        #f8fafc;      /* slate 50  */
-    --clr-text-muted:  #cbd5e1;      /* slate 300 */
-    --shadow-lg:       0 6px 20px -4px rgb(0 0 0 /.45);
+    --bg:#1f2121; --surface:#262828; --surface-2:#303232;
+    --text:#f8fafc; --text-muted:#a0a8b0; --border:#334155;
+    --sh-sm:0 1px 2px rgba(0,0,0,.4); --sh-lg:0 10px 15px -3px rgba(0,0,0,.5)
   }
 }
 
-/* ──────────────────────────────────────────────
-   Layout helpers
-   ────────────────────────────────────────────── */
-html,body{
-  height:100%;
-}
-body{
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  background:var(--clr-bg);
-  color:var(--clr-text);
-  transition:background .4s, color .4s;
+/* Base reset */
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
+
+/* Header */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 0;position:sticky;top:0;z-index:10}
+.header-content{max-width:72rem;margin:auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.brand-link{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:inherit}
+.brand-link:hover{color:var(--primary)}
+.brand-text{font-size:1.25rem;font-weight:600;letter-spacing:.02em}
+.nav{display:flex;gap:1.25rem}
+.nav-link{font-size:.875rem;color:var(--text-muted);text-decoration:none}
+.nav-link:hover{color:var(--primary)}
+/* logo fix */
+img.logo, .brand-link img{height:2.5rem;width:auto}
+
+/* Main layout */
+.main{flex:1;padding:3rem 0}
+.container{max-width:48rem;margin:auto;padding:0 1.5rem}
+.tool-header{text-align:center;margin-bottom:3rem}
+.tool-title{font-size:2.25rem;font-weight:700;margin-bottom:1rem}
+.tool-description{font-size:1.125rem;color:var(--text-muted)}
+
+/* Card */
+.password-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:2rem;margin-bottom:2rem}
+.password-label{font-size:.875rem;font-weight:600;margin-bottom:.5rem;display:block}
+.password-output{display:flex;gap:.5rem}
+.password-input{flex:1;padding:.875rem 1rem;font:1rem/1.4 "Menlo",monospace;background:var(--surface-2);border:2px solid var(--border);border-radius:var(--r-md);letter-spacing:.05em}
+.password-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(33,144,176,.15)}
+.copy-btn{background:var(--primary);border:none;color:#fff;border-radius:var(--r-md);padding:.875rem 1rem;cursor:pointer;display:flex;align-items:center}
+.copy-btn:hover{background:var(--primary-hover)}
+.copy-icon{width:1.25rem;height:1.25rem}
+
+/* Controls */
+.controls-section{display:flex;flex-direction:column;gap:1.5rem;margin-top:1.5rem}
+.control-label{font-size:.875rem;font-weight:600}
+.slider-container{display:flex;align-items:center;gap:1rem}
+.slider{flex:1;height:.5rem;border-radius:var(--r-sm);appearance:none;background:var(--surface-2)}
+.slider::-webkit-slider-thumb{appearance:none;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--primary);cursor:pointer}
+.slider-value{font-weight:600;color:var(--primary)}
+.checkbox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.checkbox-item{display:flex;align-items:center;gap:.75rem;cursor:pointer;padding:.5rem;border-radius:var(--r-sm)}
+.checkbox-item:hover{background:var(--surface-2)}
+.checkbox-item input{display:none}
+.checkmark{width:1.25rem;height:1.25rem;border:2px solid var(--border);border-radius:var(--r-sm);flex-shrink:0;position:relative}
+.checkbox-item input:checked + .checkmark{background:var(--primary);border-color:var(--primary)}
+.checkbox-item input:checked + .checkmark::after{content:'';position:absolute;left:.25rem;top:.125rem;width:.35rem;height:.6rem;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.checkbox-label{font-size:.875rem}
+
+/* Generate button */
+.generate-btn{background:linear-gradient(135deg,var(--primary)0%,var(--primary-active)100%);color:#fff;border:none;border-radius:var(--r-md);padding:1rem 2rem;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.5rem}
+.generate-btn:hover{opacity:.95;transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.generate-icon{width:1.25rem;height:1.25rem}
+
+/* Info block */
+.security-info{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem}
+.info-title{font-size:1.125rem;font-weight:600;margin-bottom:1rem}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.info-item{font-size:.875rem;color:var(--text-muted}
+.info-item strong{color:var(--text)}
+
+/* Footer */
+.footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;font-size:.875rem;color:var(--text-muted)}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--primary);color:#fff;padding:.875rem 1.25rem;border-radius:var(--r-md);opacity:0;transform:translateY(2rem);pointer-events:none;transition:all .3s}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* Mobile tweaks */
+@media(max-width:768px){
+  .container{padding:0 1rem}
+  .password-card{padding:1.5rem}
+  .checkbox-grid{grid-template-columns:1fr}
 }
 
-main{
-  width:clamp(320px, 90vw, 460px);
-  background:var(--clr-surface);
-  border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-lg);
-  padding:2.25rem 2rem 2.5rem;
-  display:flex;
-  flex-direction:column;
-  gap:1.75rem;
-  position:relative;
-  overflow:hidden;
-}
-
-/* soft fade-in */
-main::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 30% 20%,rgb(255 255 255 /.12),transparent 60%);
-  opacity:.25;
-  pointer-events:none;
-}
-
-/* ──────────────────────────────────────────────
-   Heading & helper text
-   ────────────────────────────────────────────── */
-h1{
-  margin:0;
-  font-size:clamp(1.4rem,3vw,1.7rem);
-  font-weight:600;
-  text-align:center;
-}
-small{
-  font-size:.825rem;
-  color:var(--clr-text-muted);
-  text-align:center;
-  display:block;
-}
-
-/* ──────────────────────────────────────────────
-   Password input row
-   ────────────────────────────────────────────── */
-.output-wrap{
-  display:flex;
-  gap:.5rem;
-  align-items:center;
-}
-
-#password{
-  flex:1;
-  font-size:1.05rem;
-  padding:.65rem .9rem;
-  border:2px solid var(--clr-primary);
-  border-radius:.55rem;
-  background:transparent;
-  color:var(--clr-text);
-  letter-spacing:.05em;
-  font-family:inherit;
-  user-select:all;
-  transition:border-color .25s, box-shadow .25s;
-}
-#password:focus{
-  outline:none;
-  box-shadow:0 0 0 3px rgb(33 144 176 /.25);
-}
-
-/* copy button */
-.btn-copy{
-  background:var(--clr-primary);
-  color:#fff;
-  border:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:.65rem .9rem;
-  border-radius:.55rem;
-  cursor:pointer;
-  transition:background .25s, transform .18s;
-}
-.btn-copy:hover{background:var(--clr-primary-hover);} 
-.btn-copy:active{transform:scale(.95);} 
-
-/* ──────────────────────────────────────────────
-   Generate section
-   ────────────────────────────────────────────── */
-.controls{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1rem 1.25rem;
-  justify-content:center;
-}
-.range-group{
-  display:flex;
-  flex-direction:column;
-  gap:.35rem;
-}
-.range-group label{
-  font-size:.9rem;
-  font-weight:500;
-}
-.range-group input[type="range"]{
-  accent-color:var(--clr-primary);
-  cursor:pointer;
-}
-
-/* checkboxes */
-.check-group{
-  display:flex;
-  align-items:center;
-  gap:.45rem;
-}
-.check-group input{
-  accent-color:var(--clr-primary);
-  transform:scale(1.1);
-  cursor:pointer;
-}
-.check-group label{
-  font-size:.95rem;
-}
-
-/* generate button */
-.btn-generate{
-  margin-top:1rem;
-  width:100%;
-  background:var(--clr-primary);
-  color:#fff;
-  font-weight:600;
-  border:none;
-  padding:.9rem 1rem;
-  border-radius:.6rem;
-  cursor:pointer;
-  letter-spacing:.02em;
-  font-size:1rem;
-  box-shadow:0 4px 12px -3px rgb(33 144 176 /.35);
-  transition:background .25s, transform .18s, box-shadow .25s;
-}
-.btn-generate:hover{
-  background:var(--clr-primary-hover);
-  box-shadow:0 5px 16px -3px rgb(26 139 205 /.45);
-}
-.btn-generate:active{transform:translateY(2px);} 
-
-/* generation toast */
-.toast{
-  position:fixed;
-  bottom:1.25rem;
-  right:1.25rem;
-  background:var(--clr-primary);
-  color:#fff;
-  padding:.65rem 1rem;
-  border-radius:.6rem;
-  font-size:.9rem;
-  opacity:0;
-  transform:translateY(20px);
-  pointer-events:none;
-  transition:opacity .35s, transform .35s;
-}
-.toast.show{
-  opacity:1;
-  transform:translateY(0);
+@media(max-width:480px){
+  .tool-title{font-size:1.75rem}
+  .password-output{flex-direction:column}
+  .copy-btn{width:100%}
 }
