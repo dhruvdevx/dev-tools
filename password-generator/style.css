@@ -123,8 +123,8 @@ small{
   cursor:pointer;
   transition:background .25s, transform .18s;
 }
-.btn-copy:hover{background:var(--clr-primary-hover);}
-.btn-copy:active{transform:scale(.95);}
+.btn-copy:hover{background:var(--clr-primary-hover);} 
+.btn-copy:active{transform:scale(.95);} 
 
 /* ──────────────────────────────────────────────
    Generate section
@@ -184,7 +184,7 @@ small{
   background:var(--clr-primary-hover);
   box-shadow:0 5px 16px -3px rgb(26 139 205 /.45);
 }
-.btn-generate:active{transform:translateY(2px);}
+.btn-generate:active{transform:translateY(2px);} 
 
 /* generation toast */
 .toast{

@@ -1,74 +1,76 @@
-function generatePassword() {
-    // Character sets for password generation
-    const lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numbers = "0123456789";
-    const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+const lengthInput   = document.getElementById('length');
+const lengthValue   = document.getElementById('lengthValue');
+const lowercaseInput = document.getElementById('lowercase');
+const uppercaseInput = document.getElementById('uppercase');
+const numbersInput   = document.getElementById('numbers');
+const symbolsInput   = document.getElementById('symbols');
+const passwordField  = document.getElementById('password');
+const generateBtn    = document.getElementById('generate');
+const copyBtn        = document.getElementById('copy');
+const toast          = document.getElementById('toast');
 
-    // Combine all character sets
-    const allCharacters = lowercase + uppercase + numbers + symbols;
+const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numberChars    = '0123456789';
+const symbolChars    = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
-    let password = "";
-    const passwordLength = 12;
+const shuffle = (str) => [...str].sort(() => Math.random() - 0.5).join('');
 
-    // Ensure at least one character from each set
-    password += getRandomChar(lowercase);
-    password += getRandomChar(uppercase);
-    password += getRandomChar(numbers);
-    password += getRandomChar(symbols);
+function generatePassword(){
+  const length = +lengthInput.value;
+  let charPool = '';
+  let mandatory = [];
 
-    // Fill the rest with random characters
-    for (let i = 4; i < passwordLength; i++) {
-        password += getRandomChar(allCharacters);
-    }
+  if(lowercaseInput.checked){
+    charPool += lowercaseChars;
+    mandatory.push(randomChar(lowercaseChars));
+  }
+  if(uppercaseInput.checked){
+    charPool += uppercaseChars;
+    mandatory.push(randomChar(uppercaseChars));
+  }
+  if(numbersInput.checked){
+    charPool += numberChars;
+    mandatory.push(randomChar(numberChars));
+  }
+  if(symbolsInput.checked){
+    charPool += symbolChars;
+    mandatory.push(randomChar(symbolChars));
+  }
+  if(!charPool) return '';
 
-    // Shuffle the password to avoid predictable patterns
-    password = shuffleString(password);
-
-    // Set the password in the input field
-    const passwordInput = document.getElementById("password");
-    passwordInput.value = password;
-
-    // Optional: Auto-select the password for easy copying
-    passwordInput.select();
-    passwordInput.setSelectionRange(0, 99999); // For mobile devices
-
-    // Add a subtle animation to show the password was generated
-    passwordInput.style.background = "#e8f5e8";
-    setTimeout(() => {
-        passwordInput.style.background = "white";
-    }, 500);
+  let password = '';
+  for(let i = mandatory.length; i < length; i++){
+    password += randomChar(charPool);
+  }
+  password += mandatory.join('');
+  return shuffle(password);
 }
 
-function getRandomChar(charset) {
-    return charset.charAt(Math.floor(Math.random() * charset.length));
+function randomChar(pool){
+  return pool[Math.floor(Math.random()*pool.length)];
 }
 
-function shuffleString(str) {
-    return str.split('').sort(() => 0.5 - Math.random()).join('');
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=> toast.classList.remove('show'), 3000);
 }
 
-// Allow generating password with Enter key
-document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            generatePassword();
-        }
-    });
+lengthInput.addEventListener('input', () => {
+  lengthValue.textContent = lengthInput.value;
 });
 
-// Optional: Add copy to clipboard functionality
-function copyPassword() {
-    const passwordInput = document.getElementById("password");
-    if (passwordInput.value) {
-        passwordInput.select();
-        passwordInput.setSelectionRange(0, 99999);
+generateBtn.addEventListener('click', () => {
+  const pwd = generatePassword();
+  passwordField.value = pwd;
+  passwordField.focus();
+  passwordField.select();
+  showToast('Password generated!');
+});
 
-        try {
-            document.execCommand('copy');
-            // Could add a tooltip or notification here
-        } catch (err) {
-            console.log('Copy failed, but password is selected for manual copy');
-        }
-    }
-}
+copyBtn.addEventListener('click', () => {
+  if(!passwordField.value) return;
+  navigator.clipboard.writeText(passwordField.value);
+  showToast('Copied to clipboard!');
+});
