@@ -10,11 +10,21 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
-  <link rel="icon" type="image/svg+xml" href="assets/du-logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/du-logo.png" />
+  <meta name="description" content="Premium developer tools by Dhruv Upadhyay - Password generator, JSON formatter, and more open-source utilities" />
 </head>
 
 <body>
-  <header class="max-w-6xl mx-auto flex items-center justify-between py-8 px-6">
+  <!-- Particle Background Container -->
+  <div class="particles-container" data-particles 
+       data-particle-count="60" 
+       data-particle-speed="0.3" 
+       data-particle-connections="true" 
+       data-particle-interaction="true">
+  </div>
+
+  <header class="max-w-6xl mx-auto flex items-center justify-between py-8 px-6" 
+          data-scroll-animation="fade="100">
     <a href="https://dhruvupadhyay.com" class="flex items-center gap-3">
       <img src="assets/du-logo.png" alt="DU logo" class="h-10" style="width: auto;" />
       <span class="text-2xl font-semibold tracking-wide">Dev Tools</span>
@@ -23,7 +33,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 pb-24">
-    <section class="text-center mb-12">
+    <section class="text-center mb-12" data-scroll-animation="fadeInUp" data-scroll-delay="200">
       <h1 class="text-4xl font-bold mb-4">Developer Tools</h1>
       <p class="text-lg opacity-80">
         A collection of premium, open-source utilities for developers
@@ -32,7 +42,8 @@
 
     <section id="toolGrid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Password Generator Card -->
-      <a href="/password-generator/" class="group tool-card">
+      <a href="/password-generator/" class="group tool-card" 
+         data-scroll-animation="fadeInUp" data-scroll-delay="300">
         <div class="tool-card-inner">
           <div class="icon">🔐</div>
           <h3 class="text-xl font-semibold mb-2 group-hover:text-primary">Password Generator</h3>
@@ -53,8 +64,8 @@
         </div>
       </a>
 
-      <!-- Coming Soon Cards -->
-      <div class="tool-card coming-soon">
+      <!-- Coming Soon Cards with staggered animations -->
+      <div class="tool-card coming-soon" data-scroll-animation="fadeInUp" data-scroll-delay="400">
         <div class="tool-card-inner">
           <div class="icon">🎨</div>
           <h3 class="text-xl font-semibold mb-2">Color Palette Generator</h3>
@@ -63,7 +74,7 @@
         </div>
       </div>
 
-      <div class="tool-card coming-soon">
+      <div class="tool-card coming-soon" data-scroll-animation="fadeInUp" data-scroll-delay="500">
         <div class="tool-card-inner">
           <div class="icon">🔗</div>
           <h3 class="text-xl font-semibold mb-2">URL Shortener</h3>
@@ -72,7 +83,7 @@
         </div>
       </div>
 
-      <div class="tool-card coming-soon">
+      <div class="tool-card coming-soon" data-scroll-animation="fadeInUp" data-scroll-delay="600">
         <div class="tool-card-inner">
           <div class="icon">📝</div>
           <h3 class="text-xl font-semibold mb-2">JSON Formatter</h3>
@@ -81,7 +92,7 @@
         </div>
       </div>
 
-      <div class="tool-card coming-soon">
+      <div class="tool-card coming-soon" data-scroll-animation="fadeInUp" data-scroll-delay="700">
         <div class="tool-card-inner">
           <div class="icon">🖼️</div>
           <h3 class="text-xl font-semibold mb-2">Image Optimizer</h3>
@@ -90,7 +101,7 @@
         </div>
       </div>
 
-      <div class="tool-card coming-soon">
+      <div class="tool-card coming-soon" data-scroll-animation="fadeInUp" data-scroll-delay="800">
         <div class="tool-card-inner">
           <div class="icon">⚡</div>
           <h3 class="text-xl font-semibold mb-2">Base64 Encoder</h3>
@@ -101,8 +112,12 @@
     </section>
   </main>
 
-  <footer class="py-8 text-center text-sm opacity-70">
+  <footer class="py-8 text-center text-sm opacity-70" data-scroll-animation="fadeInUp" data-scroll-delay="900">
     © 2025 Dhruv Upadhyay — Premium developer tools, open source
   </footer>
+
+  <!-- Load Scripts -->
+  <script src="assets/particles.js"></script>
+  <script src="assets/smooth-scroll.js"></script>
 </body>
 </html>
