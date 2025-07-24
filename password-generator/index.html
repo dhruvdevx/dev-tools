@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator - Dhruv Upadhyay Tools</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href=".com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/du-logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/du-logo.png">
     <meta name="description" content="Generate secure, random passwords with customizable options. Premium developer tool by Dhruv Upadhyay.">
 </head>
 <body>
-    <header class="header">
+    <!-- Particle Background Container -->
+    <div class="particles-container" data-particles 
+         data-particle-count="40" 
+         data-particle-speed="0.2" 
+         data-particle-connections="true" 
+         data-particle-interaction="true">
+    </div>
+
+    <header class="header" data-scroll-animation="fadeInUp">
         <div class="header-content">
             <a href="../" class="brand-link">
                 <img src="../assets/du-logo.png" alt="DU logo" class="h-10" style="width: auto;">
@@ -27,12 +35,12 @@
 
     <main class="main">
         <div class="container">
-            <div class="tool-header">
+            <div class="tool-header" data-scroll-animation="fadeInUp" data-scroll-delay="100">
                 <h1 class="tool-title">🔐 Password Generator</h1>
                 <p class="tool-description">Generate secure, random passwords with customizable options and cryptographic strength.</p>
             </div>
 
-            <div class="password-card">
+            <div class="password-card" data-scroll-animation="fadeInUp" data-scroll-delay="200">
                 <div class="password-section">
                     <label for="password" class="password-label">Generated Password</label>
                     <div class="password-output">
@@ -90,7 +98,7 @@
                 </div>
             </div>
 
-            <div class="security-info">
+            <div class="security-info" data-scroll-animation="fadeInUp" data-scroll-delay="300">
                 <h3 class="info-title">🛡️ Security Information</h3>
                 <div class="info-grid">
                     <div class="info-item">
@@ -110,7 +118,7 @@
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" data-scroll-animation="fadeInUp" data-scroll-delay="400">
         <div class="footer-content">
             <p>&copy; 2025 Dhruv Upadhyay — Premium developer tools, open source</p>
         </div>
@@ -119,6 +127,9 @@
     <!-- Toast notification -->
     <div id="toast" class="toast">Password copied to clipboard!</div>
 
+    <!-- Load Scripts -->
+    <script src="../assets/particles.js"></script>
+    <script src="../assets/smooth-scroll.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
